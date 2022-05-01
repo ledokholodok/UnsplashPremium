@@ -23,7 +23,7 @@ class SearchResultViewController: UIViewController {
     
     let usersView = UITableView()
     private lazy var usersTableDirector: UsersTableDirector = {
-        let tableDirector = UsersTableDirector(tableView: usersView, items: [])
+        let tableDirector = UsersTableDirector(tableView: usersView, items: [], cellSelectedListener: self)
         return tableDirector
     }()
     
@@ -48,7 +48,7 @@ class SearchResultViewController: UIViewController {
     private func configureContainer() {
         view.addSubview(containerView)
         containerView.snp.makeConstraints {
-            $0.top.equalTo(segmentedControl.snp.bottom)
+            $0.top.equalTo(segmentedControl.snp.bottom).offset(10)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.width.equalToSuperview()
         }
@@ -107,5 +107,15 @@ class SearchResultViewController: UIViewController {
 
     private func loadUsers() {
         viewModel.searchUsers(query: "youtube")
+    }
+}
+
+extension SearchResultViewController : UserCellSelectedListener {
+    func onUserCellSelected(userCellData: UserCellData) {
+        let rootVC = UserDetailsViewController()
+        rootVC.userCellData = userCellData
+        let navigationVC = UINavigationController(rootViewController: rootVC)
+        navigationVC.modalPresentationStyle = .currentContext
+        present(navigationVC, animated: false)
     }
 }

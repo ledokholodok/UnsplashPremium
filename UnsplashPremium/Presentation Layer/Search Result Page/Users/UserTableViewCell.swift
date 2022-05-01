@@ -32,8 +32,9 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [name, nickname])
-        stackView.axis = .vertical
         stackView.spacing = 5
+            
+        stackView.axis = .vertical
         return stackView
     }()
     
@@ -58,7 +59,7 @@ class UserTableViewCell: UITableViewCell, ConfigurableCell {
         }
         
         stackView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(20)
             $0.leading.equalTo(image.snp.trailing).offset(10)
         }
     }
