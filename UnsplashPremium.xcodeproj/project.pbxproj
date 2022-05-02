@@ -16,6 +16,10 @@
 		20025EBD281DB8BF00D88ACD /* UserLikeCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20025EBC281DB8BF00D88ACD /* UserLikeCellData.swift */; };
 		20025EBF281DB8F800D88ACD /* UserLikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20025EBE281DB8F800D88ACD /* UserLikeTableViewCell.swift */; };
 		20025EC1281F241F00D88ACD /* UserProfileWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20025EC0281F241F00D88ACD /* UserProfileWrapper.swift */; };
+		20025EC3281FABC300D88ACD /* UserCollectionsTableDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20025EC2281FABC300D88ACD /* UserCollectionsTableDirector.swift */; };
+		20025EC7281FAC1D00D88ACD /* UserCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20025EC6281FAC1D00D88ACD /* UserCollectionTableViewCell.swift */; };
+		20025EC9281FAC3100D88ACD /* UserCollectionCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20025EC8281FAC3100D88ACD /* UserCollectionCellData.swift */; };
+		20025ECB281FAFE800D88ACD /* UserCollectionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20025ECA281FAFE800D88ACD /* UserCollectionWrapper.swift */; };
 		207EEA8A28199A2E00A074EC /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EEA8928199A2E00A074EC /* SearchResultViewController.swift */; };
 		207EEA8D2819A7D200A074EC /* UsersTableDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EEA8C2819A7D200A074EC /* UsersTableDirector.swift */; };
 		207EEA902819AD0800A074EC /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EEA8F2819AD0800A074EC /* UserTableViewCell.swift */; };
@@ -63,6 +67,10 @@
 		20025EBC281DB8BF00D88ACD /* UserLikeCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLikeCellData.swift; sourceTree = "<group>"; };
 		20025EBE281DB8F800D88ACD /* UserLikeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLikeTableViewCell.swift; sourceTree = "<group>"; };
 		20025EC0281F241F00D88ACD /* UserProfileWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileWrapper.swift; sourceTree = "<group>"; };
+		20025EC2281FABC300D88ACD /* UserCollectionsTableDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionsTableDirector.swift; sourceTree = "<group>"; };
+		20025EC6281FAC1D00D88ACD /* UserCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		20025EC8281FAC3100D88ACD /* UserCollectionCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionCellData.swift; sourceTree = "<group>"; };
+		20025ECA281FAFE800D88ACD /* UserCollectionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionWrapper.swift; sourceTree = "<group>"; };
 		207EEA8928199A2E00A074EC /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		207EEA8C2819A7D200A074EC /* UsersTableDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableDirector.swift; sourceTree = "<group>"; };
 		207EEA8F2819AD0800A074EC /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +151,16 @@
 			path = "User Likes";
 			sourceTree = "<group>";
 		};
+		20025EC5281FABDF00D88ACD /* User Collections */ = {
+			isa = PBXGroup;
+			children = (
+				20025EC2281FABC300D88ACD /* UserCollectionsTableDirector.swift */,
+				20025EC6281FAC1D00D88ACD /* UserCollectionTableViewCell.swift */,
+				20025EC8281FAC3100D88ACD /* UserCollectionCellData.swift */,
+			);
+			path = "User Collections";
+			sourceTree = "<group>";
+		};
 		207EEA8B28199A3600A074EC /* Search Result Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +196,7 @@
 			children = (
 				207EEA982819B9CF00A074EC /* UsersWrapper.swift */,
 				20025EC0281F241F00D88ACD /* UserProfileWrapper.swift */,
+				20025ECA281FAFE800D88ACD /* UserCollectionWrapper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +208,7 @@
 				20025EB0281D9CC700D88ACD /* UserDetailsViewModel.swift */,
 				20025EB4281DA0EE00D88ACD /* User Photos */,
 				20025EBB281DB88E00D88ACD /* User Likes */,
+				20025EC5281FABDF00D88ACD /* User Collections */,
 			);
 			path = "User Details Page";
 			sourceTree = "<group>";
@@ -484,8 +504,10 @@
 				CEB77D71281704ED005C5E7A /* ProfileViewController.swift in Sources */,
 				CEB77D88281750D5005C5E7A /* TopicWrapper.swift in Sources */,
 				207EEA9E2819C29A00A074EC /* UserCellData.swift in Sources */,
+				20025EC7281FAC1D00D88ACD /* UserCollectionTableViewCell.swift in Sources */,
 				CEB77D5B2817037C005C5E7A /* HomeViewController.swift in Sources */,
 				20025EBD281DB8BF00D88ACD /* UserLikeCellData.swift in Sources */,
+				20025ECB281FAFE800D88ACD /* UserCollectionWrapper.swift in Sources */,
 				CEB77D8F28177E0A005C5E7A /* User.swift in Sources */,
 				CEB77D9128178A56005C5E7A /* DetailedPhoto.swift in Sources */,
 				CEB77D7F2817286C005C5E7A /* TopicCell.swift in Sources */,
@@ -501,9 +523,11 @@
 				20025EB3281DA07800D88ACD /* UserPhotosTableDirector.swift in Sources */,
 				207EEA922819AF2400A074EC /* ConfigurableCell.swift in Sources */,
 				CEB77D592817037C005C5E7A /* SceneDelegate.swift in Sources */,
+				20025EC3281FABC300D88ACD /* UserCollectionsTableDirector.swift in Sources */,
 				CEB77D78281714BE005C5E7A /* PhotoWrapper.swift in Sources */,
 				CEB77D8328174C06005C5E7A /* Endpoint.swift in Sources */,
 				CEB77D6F281704DE005C5E7A /* PostViewController.swift in Sources */,
+				20025EC9281FAC3100D88ACD /* UserCollectionCellData.swift in Sources */,
 				CEB77D8B28177B2A005C5E7A /* Topic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -106,7 +106,7 @@ class SearchResultViewController: UIViewController {
     }
 
     private func loadUsers() {
-        viewModel.searchUsers(query: "youtube")
+        viewModel.searchUsers(query: "bob")
     }
 }
 

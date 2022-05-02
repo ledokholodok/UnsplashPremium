@@ -12,6 +12,7 @@ protocol UsersService {
     func searchUsers(query: String, result: @escaping (Result<UsersWrapper, Error>) -> Void)
     func getUserPhotos(username: String, result: @escaping (Result<[PhotoWrapper], Error>) -> Void)
     func getUserLikes(username: String, result: @escaping (Result<[PhotoWrapper], Error>) -> Void)
+    func getUserCollections(username: String, result: @escaping (Result<[UserCollectionWrapper], Error>) -> Void)
     func getUserProfile(username: String, result: @escaping (Result<UserProfileWrapper, Error>) -> Void)
 }
 
@@ -53,6 +54,20 @@ class UsersServiceImplementation : UsersService {
             switch response.result {
             case .success(let photos):
                 result(.success(photos))
+            case .failure(let error):
+                result(.failure(error))
+            }
+        }
+    }
+    
+    func getUserCollections(username: String, result: @escaping (Result<[UserCollectionWrapper], Error>) -> Void) {
+        let urlString = String(format: "%@users/\(username)/collections%@", EndPoint.baseUrl, EndPoint.clientIdParameter)
+        guard let url = URL(string: urlString) else { return }
+        
+        AF.request(url, method: .get, parameters: nil).responseDecodable { (response: DataResponse<[UserCollectionWrapper], AFError>) in
+            switch response.result {
+            case .success(let collections):
+                result(.success(collections))
             case .failure(let error):
                 result(.failure(error))
             }

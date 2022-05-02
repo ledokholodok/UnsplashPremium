@@ -12,8 +12,6 @@ class UserDetailsViewController: UIViewController {
     private let viewModel = UserDetailsViewModel(usersService: UsersServiceImplementation())
     var userCellData: UserCellData? = nil
     
-    let headerView = UIView()
-    
     let profileImageView: UIImageView = {
         let profileImageView = UIImageView()
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
@@ -52,9 +50,19 @@ class UserDetailsViewController: UIViewController {
         return likesView
     }()
     
-    
     private lazy var likesTableDirector: UserLikesTableDirector = {
         let tableDirector = UserLikesTableDirector(tableView: likesView, items: [])
+        return tableDirector
+    }()
+    
+    let collectionsView: UITableView = {
+        let collectionsView = UITableView()
+        collectionsView.isHidden = true
+        return collectionsView
+    }()
+    
+    private lazy var collectionsTableDirector: UserCollectionsTableDirector = {
+        let tableDirector = UserCollectionsTableDirector(tableView: collectionsView, items: [])
         return tableDirector
     }()
 
@@ -111,8 +119,10 @@ class UserDetailsViewController: UIViewController {
         configureContainer()
         configurePhotosView()
         configureLikesView()
+        configureCollectionsView()
         loadPhotos()
         loadLikes()
+        loadCollections()
         loadProfile()
     }
     
@@ -161,7 +171,6 @@ class UserDetailsViewController: UIViewController {
             $0.top.equalTo(userNameLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().offset(10)
         }
-//        locationLabel.text = userCellData?.nickname ?? ""
     }
     
     private func configureWebsiteView() {
@@ -178,7 +187,6 @@ class UserDetailsViewController: UIViewController {
             $0.top.equalTo(locationStackView.snp.bottom).offset(15)
             $0.leading.trailing.equalToSuperview().offset(10)
         }
-//        websiteLabel.text = userCellData?.nickname ?? ""
     }
     
     private func configureSegmentedControl() {
@@ -212,6 +220,13 @@ class UserDetailsViewController: UIViewController {
         }
     }
     
+    private func configureCollectionsView() {
+        containerView.addSubview(collectionsView)
+        collectionsView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
     @objc private func backToSearchResult() {
         dismiss(animated: true)
     }
@@ -221,12 +236,15 @@ class UserDetailsViewController: UIViewController {
               case 0:
                 photosView.isHidden = false
                 likesView.isHidden = true
+                collectionsView.isHidden = true
               case 1:
                 photosView.isHidden = true
                 likesView.isHidden = false
+                collectionsView.isHidden = true
               default:
                 photosView.isHidden = true
                 likesView.isHidden = true
+                collectionsView.isHidden = false
           }
     }
     
@@ -239,6 +257,11 @@ class UserDetailsViewController: UIViewController {
         viewModel.didLoadUserLikes = { [weak self] photos in
             self?.likesTableDirector.updateItems(newItems: photos.map({ photo in
                 UserLikeCellData(url: photo.urls.regular, username: photo.user.name)
+            }))
+        }
+        viewModel.didLoadUserCollections = { [weak self] collections in
+            self?.collectionsTableDirector.updateItems(newItems: collections.map({ collection in
+                UserCollectionCellData(url: collection.coverPhoto.urls.regular, title: collection.title)
             }))
         }
         viewModel.didLoadUserProfile = { [weak self] user in
@@ -263,6 +286,10 @@ class UserDetailsViewController: UIViewController {
     
     private func loadLikes() {
         viewModel.getUserLikes(username: userCellData?.nickname ?? "")
+    }
+    
+    private func loadCollections() {
+        viewModel.getUserCollections(username: userCellData?.nickname ?? "")
     }
     
     private func loadProfile() {
