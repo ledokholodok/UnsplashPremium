@@ -12,6 +12,7 @@ class UserDetailsViewModel {
     
     var didLoadUserPhotos: (([PhotoWrapper]) -> Void)?
     var didLoadUserLikes: (([PhotoWrapper]) -> Void)?
+    var didLoadUserCollections: (([UserCollectionWrapper]) -> Void)?
     var didLoadUserProfile: ((UserProfileWrapper) -> Void)?
     
     init(usersService: UsersService) {
@@ -34,6 +35,17 @@ class UserDetailsViewModel {
             switch result {
                 case .success(let photos):
                     self?.didLoadUserLikes?(photos)
+                case .failure(let error):
+                    print(error)
+            }
+        }
+    }
+    
+    func getUserCollections(username: String) {
+        usersService.getUserCollections(username: username) {[weak self] result in
+            switch result {
+                case .success(let collections):
+                    self?.didLoadUserCollections?(collections)
                 case .failure(let error):
                     print(error)
             }
